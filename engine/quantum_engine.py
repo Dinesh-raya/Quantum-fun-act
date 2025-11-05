@@ -1,4 +1,15 @@
 
+# Robust Aer import for multiple Qiskit versions
+try:
+    from qiskit import Aer
+except Exception:
+    try:
+        from qiskit.providers.aer import Aer
+    except Exception:
+        Aer = None  # Aer backend not available; functions that require Aer should raise informative errors
+from qiskit import QuantumCircuit, execute
+
+
 from qiskit import QuantumCircuit, Aer, execute
 
 def make_basic_circuit(n_qubits, steps, measure=False):
@@ -27,6 +38,8 @@ def make_basic_circuit(n_qubits, steps, measure=False):
     return qc
 
 def run_circuit_counts(qc, shots=512):
+    if Aer is None:
+        raise ImportError('Qiskit Aer backend not available. Please install qiskit-aer (pip install qiskit-aer) or use an environment with Aer.')
     try:
         simulator = Aer.get_backend('aer_simulator')
         job = execute(qc, simulator, shots=shots)

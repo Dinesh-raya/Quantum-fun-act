@@ -1,4 +1,15 @@
 
+# Robust Aer import for multiple Qiskit versions
+try:
+    from qiskit import Aer
+except Exception:
+    try:
+        from qiskit.providers.aer import Aer
+    except Exception:
+        Aer = None  # Aer backend not available; functions that require Aer should raise informative errors
+from qiskit import QuantumCircuit, execute
+
+
 from qiskit import QuantumCircuit, Aer, execute
 import math
 

@@ -1,0 +1,7 @@
+<svg id="grov" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<g>
+  <rect x="16" y="24" width="88" height="72" rx="10" fill="#F9CB9C" stroke="#E69138" stroke-width="4"/>
+  <circle cx="60" cy="60" r="8" fill="#000"/>
+  <path d="M40 40 q20 30 40 0" stroke="#000" stroke-width="3" fill="none"/>
+</g>
+</svg>

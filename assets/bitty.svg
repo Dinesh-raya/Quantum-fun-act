@@ -1,0 +1,8 @@
+<svg id="bitty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<g>
+  <rect x="30" y="30" width="60" height="60" rx="12" fill="#C9DAF8" stroke="#6D9EEB" stroke-width="4"/>
+  <circle cx="48" cy="54" r="6" fill="#000"/>
+  <circle cx="72" cy="54" r="6" fill="#000"/>
+  <path d="M42 80 q18 10 36 0" stroke="#000" stroke-width="3" fill="none"/>
+</g>
+</svg>

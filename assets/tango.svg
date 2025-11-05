@@ -1,0 +1,7 @@
+<svg id="tango" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120">
+<g>
+  <circle cx="60" cy="60" r="40" fill="#B6D7A8" stroke="#6AA84F" stroke-width="4"/>
+  <circle cx="180" cy="60" r="40" fill="#B6D7A8" stroke="#6AA84F" stroke-width="4"/>
+  <path d="M100 70 q20 -20 40 0" stroke="#333" stroke-width="3" fill="none"/>
+</g>
+</svg>

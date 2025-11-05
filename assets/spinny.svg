@@ -1,0 +1,8 @@
+<svg id="spinny" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<g>
+  <circle cx="60" cy="60" r="44" fill="#FFD966" stroke="#F4B400" stroke-width="4"/>
+  <circle cx="48" cy="50" r="6" fill="#000"/>
+  <circle cx="72" cy="50" r="6" fill="#000"/>
+  <path d="M42 78 q18 14 36 0" stroke="#000" stroke-width="4" fill="none" stroke-linecap="round"/>
+</g>
+</svg>

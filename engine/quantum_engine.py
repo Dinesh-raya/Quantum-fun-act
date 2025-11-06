@@ -1,55 +1,15 @@
 
-# Robust Aer import for multiple Qiskit versions
-# engine/quantum_engine.py
-# Robust simulator utilities for Quantum Coins v3
-
-# Robust Aer import for multiple Qiskit versions
-try:
-    from qiskit import Aer
-except Exception:
-    try:
-        from qiskit.providers.aer import Aer
-    except Exception:
-        Aer = None  # Aer backend not available
-
-from qiskit import QuantumCircuit
-
-
-from qiskit import QuantumCircuit, Aer, execute
+from engine.qsim import init_state, apply_operator_sequence, measure_counts
 
 def make_basic_circuit(n_qubits, steps, measure=False):
-    qc = QuantumCircuit(n_qubits, n_qubits if measure else 0)
-    for s in steps:
-        gate = s[0]
-        arg = s[1]
-        if gate == 'H':
-            qc.h(arg)
-        elif gate == 'X':
-            qc.x(arg)
-        elif gate == 'RY':
-            angle = arg if isinstance(arg, (int,float)) else float(arg)
-            qc.ry(angle, 0)
-        elif gate == 'CNOT':
-            ctl, tgt = arg
-            qc.cx(ctl, tgt)
-        elif gate == 'Z':
-            qc.z(arg)
-        elif gate == 'S':
-            qc.s(arg)
-        elif gate == 'T':
-            qc.t(arg)
-    if measure:
-        qc.measure_all()
-    return qc
+    return (n_qubits, steps, measure)
 
-def run_circuit_counts(qc, shots=512):
-    if Aer is None:
-        raise ImportError('Qiskit Aer backend not available. Please install qiskit-aer (pip install qiskit-aer) or use an environment with Aer.')
-    try:
-        simulator = Aer.get_backend('aer_simulator')
-        job = execute(qc, simulator, shots=shots)
-        result = job.result()
-        counts = result.get_counts()
-    except Exception as e:
-        counts = {'0'*qc.num_qubits: shots}
-    return counts
+def run_circuit_counts(circuit_repr, shots=512):
+    n_qubits, steps, measure = circuit_repr
+    state = init_state(n_qubits)
+    final = apply_operator_sequence(n_qubits, state, steps)
+    if measure:
+        return measure_counts(final, n_qubits, shots=shots)
+    else:
+        probs = (abs(final)**2).tolist()
+        return {format(i, '0{}b'.format(n_qubits)): int(round(p*shots)) for i,p in enumerate(probs)}

@@ -1,13 +1,18 @@
 
 # Robust Aer import for multiple Qiskit versions
+# engine/quantum_engine.py
+# Robust simulator utilities for Quantum Coins v3
+
+# Robust Aer import for multiple Qiskit versions
 try:
     from qiskit import Aer
 except Exception:
     try:
         from qiskit.providers.aer import Aer
     except Exception:
-        Aer = None  # Aer backend not available; functions that require Aer should raise informative errors
-from qiskit import QuantumCircuit, execute
+        Aer = None  # Aer backend not available
+
+from qiskit import QuantumCircuit
 
 
 from qiskit import QuantumCircuit, Aer, execute
